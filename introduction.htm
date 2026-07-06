@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>燎原 · Skill 亮相介绍</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e0;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(180, 60, 30, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(200, 100, 20, 0.06) 0%, transparent 60%);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200, 100, 30, 0.3), transparent);
+  }
+
+  .hero-fire { font-size: 4rem; margin-bottom: 1rem; animation: pulseGlow 3s ease-in-out infinite; }
+
+  @keyframes pulseGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(200, 80, 20, 0.3)); }
+    50% { filter: drop-shadow(0 0 20px rgba(200, 80, 20, 0.6)); }
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    background: linear-gradient(135deg, #f59e0b, #ef4444, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-sub { font-size: clamp(1rem, 2.5vw, 1.5rem); color: #a0a0a8; max-width: 680px; margin-bottom: 2.5rem; }
+
+  .hero-quote {
+    font-size: 1.1rem; color: #888; font-style: italic;
+    border-left: 2px solid rgba(200, 100, 30, 0.4);
+    padding-left: 1.2rem; max-width: 600px; text-align: left;
+  }
+
+  .stats-bar { display: flex; gap: 3rem; margin-top: 2.5rem; flex-wrap: wrap; justify-content: center; }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 2.2rem; font-weight: 700; color: #f59e0b; font-variant-numeric: tabular-nums; }
+  .stat-label { font-size: 0.85rem; color: #888; margin-top: 0.2rem; }
+
+  section { max-width: 1000px; margin: 0 auto; padding: 5rem 2rem; }
+  section h2 { font-size: 1.6rem; font-weight: 700; color: #f0a030; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; }
+  section h2 .num { font-size: 1rem; color: #666; font-weight: 400; }
+
+  .philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+
+  .phil-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s;
+  }
+  .phil-card:hover { border-color: rgba(200, 100, 30, 0.3); }
+  .phil-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .phil-card h3 { font-size: 1rem; color: #e0a030; margin-bottom: 0.3rem; }
+  .phil-card p { font-size: 0.9rem; color: #999; }
+
+  .phase-flow { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin: 2rem 0; }
+
+  .phase-node {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 1rem 1.5rem; min-width: 140px;
+    text-align: center; position: relative;
+  }
+  .phase-node .phase-label { font-weight: 600; color: #d09030; font-size: 0.9rem; }
+  .phase-node .phase-desc { font-size: 0.8rem; color: #888; margin-top: 0.3rem; }
+  .phase-node + .phase-node::before { content: '→'; position: absolute; left: -0.8rem; top: 50%; transform: translateY(-50%); color: #555; }
+
+  .antipattern-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+  .antipattern-table th { text-align: left; padding: 0.6rem 0.8rem; font-size: 0.8rem; color: #888; border-bottom: 1px solid rgba(255,255,255,0.08); font-weight: 600; }
+  .antipattern-table td { padding: 0.6rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  .antipattern-table td:first-child { color: #f59e0b; font-weight: 600; width: 60px; }
+  .antipattern-table td:nth-child(2) { color: #ccc; }
+  .antipattern-table td:nth-child(3) { color: #999; font-size: 0.8rem; }
+
+  .twin-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+  .twin-card { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.06); }
+  .twin-card.liaoyuan { border-color: rgba(200, 80, 20, 0.25); }
+  .twin-card.gewu { border-color: rgba(30, 120, 200, 0.25); }
+  .twin-card.liaoyuan h3 { color: #d08030; }
+  .twin-card.gewu h3 { color: #4080c0; }
+  .twin-card ul { list-style: none; padding: 0; }
+  .twin-card li { padding: 0.4rem 0; font-size: 0.9rem; color: #aaa; display: flex; align-items: baseline; gap: 0.5rem; }
+  .twin-card li::before { content: '▸'; color: #555; }
+
+  .eco-flow { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0; align-items: center; }
+  .eco-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1rem 1.5rem; text-align: center; min-width: 100px; }
+  .eco-box .eco-icon { font-size: 1.5rem; }
+  .eco-box .eco-name { font-size: 0.8rem; color: #999; margin-top: 0.3rem; }
+  .eco-flow .arrow { color: #555; font-size: 0.9rem; }
+
+  .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .impact-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.2rem; }
+  .impact-card .from { font-size: 0.8rem; color: #777; text-decoration: line-through; }
+  .impact-card .to { font-size: 1.1rem; color: #4ade80; font-weight: 600; margin: 0.3rem 0; }
+  .impact-card .note { font-size: 0.8rem; color: #888; }
+
+  footer { text-align: center; padding: 3rem 2rem; color: #555; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.04); }
+
+  @media (max-width: 700px) { .twin-layout { grid-template-columns: 1fr; } .stats-bar { gap: 1.5rem; } .phase-node + .phase-node::before { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-fire">🔥</div>
+  <h1 class="hero-title">燎原</h1>
+  <p class="hero-sub">不是优化，是改造<br>有错则改，因时因地因事，万物在变 skill 也要变</p>
+  <div class="hero-quote">
+    "星星之火，可以燎原。"<br>
+    <span style="color:#666; font-size:0.85rem;">— 毛泽东</span>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">54</div><div class="stat-label">反例黑名单</div></div>
+    <div class="stat-item"><div class="stat-num">40+</div><div class="stat-label">实战案例文档</div></div>
+    <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">覆盖业务域</div></div>
+    <div class="stat-item"><div class="stat-num">v1.4.0</div><div class="stat-label">当前版本</div></div>
+  </div>
+</div>
+
+<section>
+  <h2><span class="num">01</span>核心哲学</h2>
+  <div class="philosophy-grid">
+    <div class="phil-card"><div class="icon">⚔️</div><h3>实践第一</h3><p>交付物 bug 数是唯一硬指标。rubric 分仅辅助。</p></div>
+    <div class="phil-card"><div class="icon">🎯</div><h3>矛盾驱动</h3><p>找主要矛盾，每轮只改 1 个方向，可归因。</p></div>
+    <div class="phil-card"><div class="icon">🔄</div><h3>螺旋上升</h3><p>理论→实践→修正→再实践。没有终点。</p></div>
+    <div class="phil-card"><div class="icon">🌱</div><h3>因时因地制宜</h3><p>不同阶段不同策略，新建 vs 成熟打法不同。</p></div>
+    <div class="phil-card"><div class="icon">🤝</div><h3>统一战线</h3><p>阶级分析四步法，分清主次各个击破。</p></div>
+    <div class="phil-card"><div class="icon">🧑‍🏫</div><h3>先当学生再当老师</h3><p>不跑就改=官僚主义。先跑一遍、问一遍。</p></div>
+    <div class="phil-card"><div class="icon">💪</div><h3>文明精神野蛮体魄</h3><p>结构有条理+执行抗造，缺一不可。</p></div>
+    <div class="phil-card"><div class="icon">🪙</div><h3>勤俭节约</h3><p>面子工程砍，必要环节精。token 即资源。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>改造循环 Phase 0-5</h2>
+  <div class="phase-flow">
+    <div class="phase-node"><div class="phase-label">Phase 0</div><div class="phase-desc">定策略</div></div>
+    <div class="phase-node"><div class="phase-label">Phase 1</div><div class="phase-desc">跑→问→记</div></div>
+    <div class="phase-node"><div class="phase-label">Phase 2</div><div class="phase-desc">找矛盾→改</div></div>
+    <div class="phase-node"><div class="phase-label">Phase 3</div><div class="phase-desc">重跑→判断</div></div>
+    <div class="phase-node"><div class="phase-label">Phase 4</div><div class="phase-desc">理论修正</div></div>
+    <div class="phase-node"><div class="phase-label">Phase 5</div><div class="phase-desc">改造报告</div></div>
+  </div>
+  <p style="color:#888; font-size:0.85rem; text-align:center;">停手信号：连续 2 轮 bug 减少 ≤ 1 → 见好就收</p>
+
+  <h2 style="margin-top:3rem;"><span class="num">03</span>反例黑名单（选录）</h2>
+  <table class="antipattern-table">
+    <tr><th>#</th><th>反模式</th><th>药方</th></tr>
+    <tr><td>1</td><td>官僚主义：不跑就改</td><td>先跑一遍、问一遍、记痛点</td></tr>
+    <tr><td>30</td><td>有模板无实事：格式对内容编</td><td>模板是骨架，原文是血肉</td></tr>
+    <tr><td>38</td><td>仅诊断不动手</td><td>具体问题=诊断+改造一起上</td></tr>
+    <tr><td>42</td><td>LLM 做脚本的事</td><td>脚本接管机械性工作</td></tr>
+    <tr><td>52</td><td>上下文漂移</td><td>拆批次+锚点前移+铁律执法</td></tr>
+    <tr><td>53</td><td>管道脱节</td><td>流程写"调用XX脚本"</td></tr>
+  </table>
+  <p style="color:#666; font-size:0.8rem;">完整 54 条反例，每条来自实战踩坑</p>
+</section>
+
+<section>
+  <h2><span class="num">04</span>孪生兄弟：格物</h2>
+  <p style="color:#999; margin-bottom:1.5rem;">燎原不是单打独斗的。它有一个孪生兄弟——<strong style="color:#d0a030;">格物</strong>。</p>
+  <div class="twin-layout">
+    <div class="twin-card liaoyuan">
+      <h3>🔥 燎原（武将）</h3>
+      <ul><li>改造技能流程</li><li>反例黑名单诊断</li><li>阶级分析定优先级</li><li>输出：改造报告+bug数下降</li></ul>
+    </div>
+    <div class="twin-card gewu">
+      <h3>🔍 格物（文官）</h3>
+      <ul><li>汽车工业体系知识沉淀</li><li>信号字典+ECU地图+域索引</li><li>覆盖9域</li><li>输出：知识卡+验证率</li></ul>
+    </div>
+  </div>
+  <div style="text-align:center; padding:1rem; background:rgba(255,255,255,0.02); border-radius:10px;">
+    <span style="color:#888;">协作流：</span>
+    <span style="color:#d08030;">燎原改造</span>
+    <span style="color:#555;">→ 遇到编造信号 → 查 </span>
+    <span style="color:#4080c0;">格物</span>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>技能生态位置</h2>
+  <div class="eco-flow">
+    <div class="eco-box"><div class="eco-icon">🔥</div><div class="eco-name">燎原 改</div></div>
+    <div class="arrow">→</div>
+    <div class="eco-box"><div class="eco-icon">🏺</div><div class="eco-name">百炼 验</div></div>
+    <div class="arrow">→</div>
+    <div class="eco-box"><div class="eco-icon">📜</div><div class="eco-name">知言录 记</div></div>
+    <div class="arrow">→</div>
+    <div class="eco-box"><div class="eco-icon">🧬</div><div class="eco-name">女娲 传</div></div>
+  </div>
+  <p style="color:#666; font-size:0.85rem; text-align:center;">⚡效率轨：精兵简政 ｜ 🛡️监督三角：守望哨·战评·执法 ｜ ⚔️生成三角：军令·三兵·DBC</p>
+</section>
+
+<section>
+  <h2><span class="num">06</span>实战成效</h2>
+  <div class="impact-grid">
+    <div class="impact-card"><div class="from">788 行</div><div class="to">→ 172 行</div><div class="note">domain-test-strategy v5.0→v5.1</div></div>
+    <div class="impact-card"><div class="from">30副本8.3MB</div><div class="to">→ 2通用+15配置</div><div class="note">座舱域改造，bug 64→20</div></div>
+    <div class="impact-card"><div class="from">5点15bug</div><div class="to">→ 0 bug</div><div class="note">车云域 car-cloud</div></div>
+    <div class="impact-card"><div class="from">11 bug</div><div class="to">→ 3 bug</div><div class="note">ARXML 解析器</div></div>
+    <div class="impact-card"><div class="from">102条12列</div><div class="to">→ 160条17列</div><div class="note">key-system 格式对齐</div></div>
+    <div class="impact-card"><div class="from">v2编造80%</div><div class="to">→ v3锚原文100%</div><div class="note">driving-assist改造</div></div>
+  </div>
+</section>
+
+<footer>燎原 · v1.4.0 · 不是优化，是改造</footer>
+
+</body>
+</html>
