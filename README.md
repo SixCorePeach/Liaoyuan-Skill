@@ -1,7 +1,7 @@
 # Liaoyuan-Skill
 马克思说：哲学家们只是用不同的方式解释世界，而问题在于改变世界。
 我坚信，星星之火，可以燎原！
-![Uploading image.png…]()
+![https://github.com/SixCorePeach/Liaoyuan-Skill/blob/main/9935685e-1eb5-43cc-b721-7de9a602d844.png]()
 
 **认识论站位**
 燎原与达尔文的区别
